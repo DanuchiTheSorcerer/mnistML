@@ -40,7 +40,7 @@ public class NeuralNetwork {
         }
         return nn;
     }
-    public void Backpropagate(Vector[] inBatch, Vector[] outBatch, float learningRate) {
+    public void backpropagate(Vector[] inBatch, Vector[] outBatch, float learningRate) {
         int batchSize = inBatch.length;
         Matrix[] weightGradientsTotal = new Matrix[layerSizes.length];
         Vector[] biasGradientsTotal = new Vector[layerSizes.length];
