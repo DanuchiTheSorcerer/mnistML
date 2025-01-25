@@ -4,7 +4,7 @@ Typical predicting handwritten digits program trained on the MNIST data set.
 
 ## Credits
 
-Some code and was adapted from : [Finn Eggers - YouTube](https://www.youtube.com/@finneggers6612) (Specifically the "com.trainset" and "com.trainsetLoader" packages). Check out their channel! Also check out their github [here](https://github.com/Luecx).
+Some code and was adapted from : [Finn Eggers - YouTube](https://www.youtube.com/@finneggers6612) (Specifically the "com.trainset" and "com.trainsetLoader" packages used for accessing the MNIST files). Check out their channel! Also check out their github [here](https://github.com/Luecx).
 
 ## Dataset
 
