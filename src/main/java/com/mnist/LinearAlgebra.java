@@ -1,4 +1,4 @@
-package com.maveygravey;
+package com.mnist;
 
 public class LinearAlgebra {
     public static void main(String[] args) {
@@ -12,9 +12,27 @@ public class LinearAlgebra {
     public static Vector activationFunction(Vector v) {
         float[] newComponents = new float[v.getSize()];
         for (int i = 0; i < v.getSize(); i++) {
-            newComponents[i] = Math.max(0, v.getComponent(i));
+            newComponents[i] = v.getComponent(i) > 0 ? v.getComponent(i) : 0.01f * v.getComponent(i);
         }
         return Vector.newVector(v.getSize(), newComponents);
+    }
+    public static Vector activationFunctionPrime(Vector v) {
+        float[] newComponents = new float[v.getSize()];
+        for (int i = 0; i < v.getSize(); i++) {
+            newComponents[i] = v.getComponent(i) > 0 ? 1 : 0.01f;
+        }
+        return Vector.newVector(v.getSize(), newComponents);
+    }
+    public static Matrix composeMatrix(Vector[] vectors) {
+        int rows = vectors[0].getSize();
+        int cols = vectors.length;
+        float[][] components = new float[rows][cols];
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                components[i][j] = vectors[j].getComponent(i);
+            }
+        }
+        return Matrix.newMatrix(rows, cols, components);
     }
 }
 
@@ -72,6 +90,13 @@ class Vector {
     }
     public void set(int index, float value) {
         components[index] = value;
+    }
+    public Vector hadamard(Vector other) {
+        float[] newComponents = new float[components.length];
+        for (int i = 0; i < components.length; i++) {
+            newComponents[i] = components[i] * other.components[i];
+        }
+        return Vector.newVector(components.length, newComponents);
     }
 }
 
@@ -144,5 +169,14 @@ class Matrix {
     }
     public void set(int row, int col, float value) {
         components[row][col] = value;
+    }
+    public Matrix transpose() {
+        float[][] newComponents = new float[components[0].length][components.length];
+        for (int i = 0; i < components.length; i++) {
+            for (int j = 0; j < components[0].length; j++) {
+                newComponents[j][i] = components[i][j];
+            }
+        }
+        return Matrix.newMatrix(components[0].length, components.length, newComponents);
     }
 }
